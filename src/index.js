@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, onSnapshot, addDoc,
-deleteDoc,doc, query, where, orderBy, serverTimestamp,getDoc } from "firebase/firestore";
+deleteDoc,doc, query, where, orderBy, serverTimestamp,getDoc, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDvAy7nj6jiWQV1_H5JOeEJC_O4WJ7fjnA",
@@ -63,8 +63,22 @@ deleteBookForm.addEventListener("submit", (e) => {
 //get a single document
 
 const docRef =  doc(db, 'books', '4g7NKYB3evjG2Xm3XzZH')
-
-
 onSnapshot(docRef, (doc)=>{
     console.log(doc.data(), doc.id)
+})
+
+
+//update a document
+const updateForm = document.querySelector(".update");
+updateForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+
+    const docRef = doc(db, 'books', updateForm.id.value);
+
+    updateDoc(docRef,{
+        title: 'updated title',
+    })
+    .then(()=>{
+        updateDoc.reset();
+    })
 })
