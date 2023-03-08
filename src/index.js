@@ -64,10 +64,6 @@ deleteBookForm.addEventListener("submit", (e) => {
 
 const docRef =  doc(db, 'books', '4g7NKYB3evjG2Xm3XzZH')
 
-getDoc(docRef)
-.then((doc)=>{
-    console.log(doc.data(), doc.id)
-})
 
 onSnapshot(docRef, (doc)=>{
     console.log(doc.data(), doc.id)
